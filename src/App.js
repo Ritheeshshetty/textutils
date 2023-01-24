@@ -1,15 +1,15 @@
 import './App.css';
-// import About from './components/About';
+import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import React, { useState } from 'react';
 import Alert from './components/Alert';
-// import {
-//   BrowserRouter,
-//   Routes,
-//   Route,
-//   // Link
-// } from "react-router-dom";
+import {HashRouter,
+  // BrowserRouter,
+  Routes,
+  Route,
+  // Link
+} from "react-router-dom";
 
 function App() {
   const [mode, setmode] = useState('light');
@@ -42,23 +42,32 @@ function App() {
   <>
   {/* <Navbar title="TextUtils" aboutText="AboutUtils" mode={mode} toggleMode={toggleMode} /> */}
   
-  <Navbar title="TextUtils"  mode={mode} toggleMode={toggleMode} />
-  <Alert alert={alert}/>
+  {/* <Navbar title="TextUtils"  mode={mode} toggleMode={toggleMode} />
+  <Alert alert={alert}/> */}
 
    {/* router setup */}
+   <HashRouter>
+    <Navbar title="TextUtils" aboutText="AboutUtils" mode={mode} toggleMode={toggleMode} />
+    <Alert alert={alert}/>
+     <Routes>
+        <Route exact path="/about" element={<About mode={mode} showAlert={showAlert} />} />
+        <Route exact path="/" element={<TextForm heading="Try TextUtils-word and character counter, Remove extra spaces."  mode={mode} showAlert={showAlert} />} />
+      </Routes>
+    </HashRouter>
+
   {/* <BrowserRouter>
     <Navbar title="TextUtils" aboutText="AboutUtils" mode={mode} toggleMode={toggleMode} />
     <Alert alert={alert}/>
      <Routes>
         <Route exact path="/about" element={<About mode={mode} showAlert={showAlert} />} />
-        <Route exact path="/" element={<TextForm heading="Enter text to analyze"  mode={mode} showAlert={showAlert} />} />
+        <Route exact path="/" element={<TextForm heading="Try TextUtils-word and character counter, Remove extra spaces."  mode={mode} showAlert={showAlert} />} />
       </Routes>
     </BrowserRouter> */}
     
-  <div className="container my-3" >
-  <TextForm showAlert={showAlert} heading="Enter the text to change words to uppercase or lowercase" mode={mode}/>
+  {/* <div className="container my-3" > */}
+  {/* <TextForm showAlert={showAlert} heading="Enter the text to change words to uppercase or lowercase" mode={mode}/> */}
   {/* <About/> */}
-  </div>
+  {/* </div> */}
   </>
   );
   
